@@ -5,10 +5,7 @@
 
 void error(char * op, int param)
 {
-	if(!strcmp(op,"invalid"))
-		printf("error: invalid parameter\n");
-	else
-		printf("error: operation \"%s\" needs %d parameter%c\n", op, param, param != 1 ? 's' : ' ');
+	printf("error: operation \"%s\" needs %d parameter%c\n", op, param, param != 1 ? 's' : ' ');
 }
 
 int main(int argc, char * argv[])
@@ -16,7 +13,7 @@ int main(int argc, char * argv[])
 	// lack of parameters
 	if(argc == 1)
 	{
-		error("invalid",0);
+		printf("error: no parameter specified\n");
 		return 1;
 	}
 
@@ -76,7 +73,7 @@ int main(int argc, char * argv[])
 	}
 	else
 	{
-		error("invalid", 0);
+		printf("error: invalid parameter");
 		return 1;
 	}
 	
