@@ -26,9 +26,8 @@
 Quick guide of how to use GIT (under linux)
 
 1. Install GIT
- 	$ sudo yum install git 				# under fedora
-	$ sudo apt-get install git			# under debian
-	# ??								# under windows
+ 	$ sudo yum install git # under fedora
+	$ sudo apt-get install git # under debian
 
 2. Create a new file in your system
 	$ mkdir ~/LP_2013 
@@ -39,13 +38,13 @@ Quick guide of how to use GIT (under linux)
 
 # The working method of git
 4. First, create or modify some files 
-	$ touch test.txt 					# create test.txt 
-	$ touch test2.txt					# create test2.txt
-	$ vim test.txt 						# modify test.txt
+	$ touch test.txt # create test.txt 
+	$ touch test2.txt # create test2.txt
+	$ vim test.txt # modify test.txt
 
 5. Second, add the new/modified files to the "staging area" 
-	$ git add test.txt test2.txt		# add test.txt and test2.txt to staging area
-	$ git add --all 					# shortcut to add all the new & modified files to the stage 
+	$ git add test.txt test2.txt # add test.txt and test2.txt to staging area
+	$ git add --all # shortcut to add all the new & modified files to the stage 
 
 6. Third, commit all the files on the staging area adding a commit message
 	$ git commit -m "create test.txt and test2.txt" 
