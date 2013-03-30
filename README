@@ -9,7 +9,6 @@
 
 +- README
 +- tareas/
-	README
 	+- tarea1/
 		+- include/
 			+- evento.h
