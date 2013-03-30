@@ -1,45 +1,71 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
-//#include "evento.h"
+#include "include/evento.h"
 
-void error(char * op, int param)
+void check_param(char * op, int param, int argc)
 {
-	printf("error: operation \"%s\" needs %d parameter%c\n", op, param, param != 1 ? 's' : ' ');
+
+/* check_param
+ * op	 : Name of the first parameter, argc[1] = (new | delete | get | ... ) 
+ * param : Number of arguments that take the current parameter 
+ * argc	 : Actual number of parameters given to the excecutable 
+ */
+
+	if(param+2 != argc)
+	{
+		printf("error: operation \"%s\" needs %d parameter%c\n", op, param, param != 1 ? 's' : ' ');
+		exit(0);
+	}
 }
 
 int main(int argc, char * argv[])
 {
-	// lack of parameters
+	// if lack of parameters
 	if(argc == 1)
 	{
 		printf("error: no parameter specified\n");
-		return 1;
+		exit(0);
 	}
+
+	// calculate the current id in the file
+	int current_id;
+	FILE * file = fopen("eventos.dat", "ab");
+	if(file == NULL) printf("error: could not open the file\n");
+	else
+	{
+		current_id = ftell(file) ? ftell(file)/sizeof(evento) : 0 ;
+		fclose(file); 
+	}
+
 
 	if(!strcmp(argv[1], "new"))
 	{
-		if(argc != 4)
+		check_param("new", 2, argc);
+
+		evento new_event;
+		new_event.id = ++current_id;
+		strcpy(new_event.titl, argv[2]);		
+		strcpy(new_event.desc, argv[3]);
+		new_event.estado = 0;
+
+		file = fopen("eventos.dat", "ab");
+		if(file == NULL) printf("error: could not open the file\n");
+		else
 		{
-			error("new", 2);
-			return 1;
+			fwrite(&new_event, sizeof(evento), 1, file);
+			fclose(file);
+			printf("Evento #%d creado exitosamente!\n", current_id);
 		}
 	}
 	else if(!strcmp(argv[1], "get"))
 	{
-		if(argc!= 3)
-		{
-			error("get", 1);
-			return 1;
-		}
+		check_param("get", 1, argc);
 	}
 	else if(!strcmp(argv[1], "delete"))
 	{
-		if(argc!= 3)
-		{
-			error("delete", 1);
-			return 1;
-		}
+		check_param("delete", 1, argc);
 	}
 	else if(!strcmp(argv[1], "update"))
 	{
@@ -47,35 +73,23 @@ int main(int argc, char * argv[])
 	}
 	else if(!strcmp(argv[1], "list"))
 	{
-		if(argc!= 2)
-		{
-			error("list", 0);
-			return 1;
-		}
+		check_param("list", 0, argc);
 
 	}
 	else if(!strcmp(argv[1], "clear"))
 	{
-		if(argc!= 2)
-		{
-			error("clear", 0);
-			return 1;
-		}
+		check_param("clear", 0, argc);
 
 	}
 	else if(!strcmp(argv[1], "do"))
 	{
-		if(argc!= 3)
-		{
-			error("do", 1);
-			return 1;
-		}
+		check_param("do", 1, argc);
 	}
 	else
 	{
 		printf("error: invalid parameter");
-		return 1;
+		exit(0);
 	}
 	
-	return 0;
+	exit(1);
 }
