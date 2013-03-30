@@ -6,7 +6,38 @@
 int main(int argc, char * argv[])
 {
 
-	switch()	
+	if(!strcmp(argv[1], "new"))
+	{
+
+	}
+	else if(!strcmp(argv[1], "get"))
+	{
+
+	}
+	else if(!strcmp(argv[1], "delete"))
+	{
+
+	}
+	else if(!strcmp(argv[1], "update"))
+	{
+
+	}
+	else if(!strcmp(argv[1], "list"))
+	{
+
+	}
+	else if(!strcmp(argv[1], "clear"))
+	{
+
+	}
+	else if(!strcmp(argv[1], "do"))
+	{
+
+	}
+	else
+	{
+
+	}
 	
 	return 0;
 }
