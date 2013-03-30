@@ -1,36 +1,36 @@
-#include "evento.h"
+#include "include/evento.h"
 
-void evento::nuevo_evento(evento * ptr_evento)
+void nuevo_evento(evento * ptr_evento)
 {
 
 }
 
-void evento::mostrar_evento(evento * ptr_evento)
+void mostrar_evento(evento * ptr_evento)
 {
 
 }
 
-void evento::eliminar_evento(evento * ptr_evento)
+void eliminar_evento(evento * ptr_evento)
 {
 
 }
 
-void evento::modificar_evento(evento * ptr_evento)
+void modificar_evento(evento * ptr_evento)
 {
 
 }
 
-void evento::concretar_evento(evento * ptr_evento)
+void concretar_evento(evento * ptr_evento)
 {
 
 }
 
-void evento::listar_eventos()
+void listar_eventos()
 {
 
 }
 
-void evento::vaciar_eventos()
+void vaciar_eventos()
 {
 
 }
