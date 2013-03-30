@@ -1,0 +1,25 @@
+# 
+# Primer Semestre 2013 
+# Lenguajes de Programación
+#
+#
+# Moa Bergsmark
+# David Cid
+# Warren Eaton
+#
+
++- tareas/
+	README
+	+- tarea1/
+		+- include/
+			+- evento.h
+		+- lib/
+			+- libevento.a
+		+- evento.c
+		+- main.c
+		+- Makefile
+		+- README
+	+- tarea2/
+	+- tarea3/
+	+- tarea4/
+	+- tarea5/
