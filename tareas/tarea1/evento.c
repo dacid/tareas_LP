@@ -1,8 +1,19 @@
+#include <stdlib.h>
+#include <stdio.h>
 #include "include/evento.h"
+
 
 void nuevo_evento(evento * ptr_evento)
 {
-
+	FILE * file;
+	file = fopen("eventos.dat", "ab");
+	if(file == NULL) printf("error: no se pudo abrir el archivo\n");
+	else
+	{
+		fwrite(ptr_evento, sizeof(evento), 1, file);
+		fclose(file);
+		printf("Evento #%d creado exitosamente!\n", ptr_evento->id);
+	}
 }
 
 void mostrar_evento(evento * ptr_evento)
