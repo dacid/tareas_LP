@@ -4,30 +4,20 @@
 
 #include "include/evento.h"
 
-void check_param(char * op, int param, int argc)
-{
-	if(param+2 != argc)
-	{
-		printf("error: el parametro \"%s\" necesita %d argumento%c\n", op, param, param != 1 ? 's' : ' ');
-		exit(0);
-	}
-}
+// Prototipo
+void check_param(char *, int, int);
 
-void do_the_shit(evento * ptr_evento, ptr_funcion funcion_base)
-{
-	funcion_base(ptr_evento);
-}
-
+// Main
 int main(int argc, char * argv[])
 {
-	// si no hay parametros
+	// Error si no hay parametros
 	if(argc == 1)
 	{
 		printf("error: no se especificaron parametros\n");
 		exit(0);
 	}
 
-	// calcula el id actual dentro del archivo
+	// Calcula el id actual dentro del archivo
 	int current_id;
 	FILE * file = fopen("eventos.dat", "ab");
 	if(file == NULL) printf("error: no se pufo abrir el archivo\n");
@@ -37,6 +27,16 @@ int main(int argc, char * argv[])
 		fclose(file); 
 	}
 
+	// Inicializado funciones_base[]
+	funciones_base[0] = nuevo_evento;
+	funciones_base[1] = mostrar_evento;
+	funciones_base[2] = eliminar_evento;
+	funciones_base[3] = modificar_evento;
+	funciones_base[4] = concretar_evento;
+	funciones_base[5] = listar_eventos;
+	funciones_base[6] = vaciar_eventos;
+
+	// "Switch" de parametros
 	if(!strcmp(argv[1], "new"))
 	{
 		check_param("new", 2, argc);
@@ -47,8 +47,7 @@ int main(int argc, char * argv[])
 		strcpy(n_evento->desc, argv[3]);
 		n_evento->estado = 0;
 
-		// Encontrar la forma de reemplazar &nuevo_evento por funcion_base[0]
-		do_the_shit(n_evento, &nuevo_evento);
+		funciones_base[0](n_evento);
 		free(n_evento);
 	}
 	else if(!strcmp(argv[1], "get"))
@@ -84,4 +83,13 @@ int main(int argc, char * argv[])
 	}
 	
 	exit(1);
+}
+
+void check_param(char * op, int param, int argc)
+{
+	if(param+2 != argc)
+	{
+		printf("error: el parametro \"%s\" necesita %d argumento%c\n", op, param, param != 1 ? 's' : ' ');
+		exit(0);
+	}
 }

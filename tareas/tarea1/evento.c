@@ -2,10 +2,12 @@
 #include <stdio.h>
 #include "include/evento.h"
 
+ptr_funcion funciones_base[7];
+
+FILE * file;
 
 void nuevo_evento(evento * ptr_evento)
 {
-	FILE * file;
 	file = fopen("eventos.dat", "ab");
 	if(file == NULL) printf("error: no se pudo abrir el archivo\n");
 	else
