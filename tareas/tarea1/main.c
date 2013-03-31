@@ -6,58 +6,50 @@
 
 void check_param(char * op, int param, int argc)
 {
-
-/* check_param
- * op	 : Name of the first parameter, argc[1] = (new | delete | get | ... ) 
- * param : Number of arguments that take the current parameter 
- * argc	 : Actual number of parameters given to the excecutable 
- */
-
 	if(param+2 != argc)
 	{
-		printf("error: operation \"%s\" needs %d parameter%c\n", op, param, param != 1 ? 's' : ' ');
+		printf("error: el parametro \"%s\" necesita %d argumento%c\n", op, param, param != 1 ? 's' : ' ');
 		exit(0);
 	}
 }
 
+void do_the_shit(evento * ptr_evento, ptr_funcion funcion_base)
+{
+	funcion_base(ptr_evento);
+}
+
 int main(int argc, char * argv[])
 {
-	// if lack of parameters
+	// si no hay parametros
 	if(argc == 1)
 	{
-		printf("error: no parameter specified\n");
+		printf("error: no se especificaron parametros\n");
 		exit(0);
 	}
 
-	// calculate the current id in the file
+	// calcula el id actual dentro del archivo
 	int current_id;
 	FILE * file = fopen("eventos.dat", "ab");
-	if(file == NULL) printf("error: could not open the file\n");
+	if(file == NULL) printf("error: no se pufo abrir el archivo\n");
 	else
 	{
 		current_id = ftell(file) ? ftell(file)/sizeof(evento) : 0 ;
 		fclose(file); 
 	}
 
-
 	if(!strcmp(argv[1], "new"))
 	{
 		check_param("new", 2, argc);
 
-		evento new_event;
-		new_event.id = ++current_id;
-		strcpy(new_event.titl, argv[2]);		
-		strcpy(new_event.desc, argv[3]);
-		new_event.estado = 0;
+		evento * n_evento = (evento *)malloc(sizeof(evento*));
+		n_evento->id = ++current_id;
+		strcpy(n_evento->titl, argv[2]);		
+		strcpy(n_evento->desc, argv[3]);
+		n_evento->estado = 0;
 
-		file = fopen("eventos.dat", "ab");
-		if(file == NULL) printf("error: could not open the file\n");
-		else
-		{
-			fwrite(&new_event, sizeof(evento), 1, file);
-			fclose(file);
-			printf("Evento #%d creado exitosamente!\n", current_id);
-		}
+		// Encontrar la forma de reemplazar &nuevo_evento por funcion_base[0]
+		do_the_shit(n_evento, &nuevo_evento);
+		free(n_evento);
 	}
 	else if(!strcmp(argv[1], "get"))
 	{
@@ -87,7 +79,7 @@ int main(int argc, char * argv[])
 	}
 	else
 	{
-		printf("error: invalid parameter");
+		printf("error: el parametro no es valido\n");
 		exit(0);
 	}
 	
