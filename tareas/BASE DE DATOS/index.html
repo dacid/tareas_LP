@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>AngelHack</title>
+  	<link rel="shortcut icon" href="img/favicon.ico">	
+	<link href="./css/bootstrap.css" rel="stylesheet">
+	<link href="./css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="./css/bootstrap.mini.css" rel="stylesheet">
+	<link href="./css/bootstrap-responsive.mini.css" rel="stylesheet">
+	<link href="./css/font-awesome.css" rel="stylesheet">
+	<link href="./css/font-awesome.mini.css" rel="stylesheet">
+	<link href="./css/style.css" rel="stylesheet" >
+</head>
+<body class="index">
+	<header>
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+					<img class="brand" src="./img/logo.png">
+					<div class="nav-collapse marg">
+						<ul class="nav">
+							<li><a href="#"><i class="icon-white icon-home"></i> Home</a></li></li>
+						</ul>
+					</div>
+	                <div class="nav-collapse collapse">
+	                    <ul class="nav pull-right">
+	                        <li><a href="login.php"><i class="icon-white icon-user"></i> Admin</a></li>
+	                    </ul>
+	                </div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<br>
+	<div class="container">
+	<div class="offset3 span6">
+		<div id="myCarousel" class="carousel slide">
+          <div class="carousel-inner"> 
+                <div class="item active"> 
+                    <img src="./img/inicial1.jpg">                    	    
+              	</div>			
+              	<div class="item">                     
+                    <img src="./img/inicial2.jpg">                    	                        
+              	</div>		
+              	<div class="item">                     
+                    <img src="./img/inicial3.jpg">                    	                        
+              	</div>			
+			</div>
+          <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+          <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a> 		
+		</div>
+	</div>	
+	<div class="offset4">
+		<img  href="ola.php" src="./img/login_face.png">
+	</div>
+	<hr>
+	<footer>
+		<p>&copy; AngelHack</p>
+	</footer>
+</div> <!-- /container -->
+<script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.carousel').carousel({
+                interval: 2000
+            });
+        });
+    </script>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
